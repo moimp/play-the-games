@@ -3,7 +3,7 @@ package org.slipp.masil.games.infrastructures.events;
 import org.junit.jupiter.api.Test;
 import org.slipp.masil.games.application.HighLowApplicationService;
 import org.slipp.masil.games.domains.highrow.HighLowPlayingContextRepository;
-import org.slipp.masil.games.domains.highrow.StartedHighLowPlay;
+import org.slipp.masil.games.domains.highrow.HighLowPlayStarted;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.event.ApplicationEvents;
@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RecordApplicationEvents
 @SpringBootTest
-class HighLowPlayingContextDomainEventTest {
+class DomainEventPublishTest {
 
     @Autowired
     HighLowApplicationService highLowApplicationService;
@@ -28,6 +28,6 @@ class HighLowPlayingContextDomainEventTest {
     void publishStartedEvent() {
         highLowApplicationService.start();
 
-        assertThat(applicationEvents.stream(StartedHighLowPlay.class)).hasSize(1);
+        assertThat(applicationEvents.stream(HighLowPlayStarted.class)).hasSize(1);
     }
 }

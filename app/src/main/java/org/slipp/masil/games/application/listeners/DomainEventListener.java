@@ -1,7 +1,7 @@
 package org.slipp.masil.games.application.listeners;
 
 import org.slipp.masil.games.domains.highrow.HighLowPlayingContext;
-import org.slipp.masil.games.domains.highrow.MatchedHighLowPlay;
+import org.slipp.masil.games.domains.highrow.HighLowPlayMatched;
 import org.slipp.masil.games.infrastructures.events.DomainEvent;
 import org.slipp.masil.games.infrastructures.events.sotre.EventStore;
 import org.springframework.context.ApplicationContext;
@@ -25,7 +25,7 @@ public class DomainEventListener {
         //TODO 추후 relay 가 만들어지면 사용하자
         // this.eventStore.save(EventEnvelop.of(event));
 
-        if (event instanceof MatchedHighLowPlay ) {
+        if (event instanceof HighLowPlayMatched) {
             HighLowPlayingContext aggregateRoot = event.getAggregateRoot();
             RankingRefreshEvent rankingRefresh = new RankingRefreshEvent(aggregateRoot);
             applicationContext.publishEvent(rankingRefresh);
