@@ -5,6 +5,7 @@ import org.slipp.masil.games.domains.highrow.HighLowPlayStart;
 import org.slipp.masil.games.domains.highrow.HighLowPlayingContext;
 import org.slipp.masil.games.domains.highrow.HighLowPlayingContextFactory;
 import org.slipp.masil.games.domains.highrow.StartedHighLowPlay;
+import org.slipp.masil.games.domains.target.Target;
 import org.slipp.masil.games.infrastructures.events.EventEnvelop;
 import org.slipp.masil.games.infrastructures.events.EventStore;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ class JdbcEventStoreRepositoryTest {
 
     @Test
     void save() {
-        HighLowPlayingContext context = HighLowPlayingContextFactory.DEFAULT.create(new HighLowPlayStart("Foo"));
+        HighLowPlayingContext context = HighLowPlayingContextFactory.DEFAULT.create(new HighLowPlayStart("Foo"), Target.createBy(() -> 10L));
         StartedHighLowPlay domainEvent = new StartedHighLowPlay(context);
         EventEnvelop eventEnvelop = EventEnvelop.of(domainEvent);
         eventStore.save(eventEnvelop);

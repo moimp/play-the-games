@@ -8,6 +8,7 @@ import org.slipp.masil.games.domains.highrow.HighLowPlayStart;
 import org.slipp.masil.games.domains.highrow.HighLowPlayingContext;
 import org.slipp.masil.games.domains.highrow.HighLowPlayingContextFactory;
 import org.slipp.masil.games.domains.highrow.StartedHighLowPlay;
+import org.slipp.masil.games.domains.target.Target;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,7 +19,8 @@ public class EventEnvelopCreateTest {
 
     @BeforeEach
     void setUp() {
-        context = HighLowPlayingContextFactory.DEFAULT.create(new HighLowPlayStart("Foo"));
+        context = HighLowPlayingContextFactory.DEFAULT.create(new HighLowPlayStart("Foo"),
+                Target.createBy(() -> 10L));
     }
 
     @Test

@@ -1,8 +1,10 @@
 package org.slipp.masil.games.domains.highrow;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slipp.masil.games.domains.Score;
 import org.slipp.masil.games.domains.game.GameId;
+import org.slipp.masil.games.domains.target.Target;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +14,7 @@ import static org.slipp.masil.games.domains.PlayState.ON_GAME;
 class HighLowPlayingContextTest {
 
     String userName = "Mike";
-    int target = 10;
+    Target target = Target.createBy(() -> 10L);
     HighLowPlayingContext sut;
 
     @BeforeEach
@@ -27,5 +29,17 @@ class HighLowPlayingContextTest {
         assertThat(sut.getTarget()).isEqualTo(target);
         assertThat(sut.getState()).isEqualTo(ON_GAME);
         assertThat(sut.getScore()).isEqualTo(Score.of(0));
+    }
+
+    @Test
+    void generateTargetWithDefaultStrategy() {
+        GameId gameId = GameId.of(1L);
+
+        Target target = Target.createBy(() -> 10L);
+
+        sut = HighLowPlayingContext.by(gameId, userName, LocalDateTime.now(), target);
+
+        assertThat(sut.getTarget()).isEqualTo(target);
+
     }
 }

@@ -4,9 +4,11 @@ import lombok.Getter;
 import org.slipp.masil.games.domains.PlayState;
 import org.slipp.masil.games.domains.Score;
 import org.slipp.masil.games.domains.game.GameId;
+import org.slipp.masil.games.domains.target.Target;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.domain.AbstractAggregateRoot;
+import org.springframework.data.relational.core.mapping.Embedded;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -30,14 +32,18 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
     @Getter
     private LocalDateTime startAt;
     @Getter
-    private int target;
+    @Embedded(onEmpty = Embedded.OnEmpty.USE_EMPTY)
+    private Target target;
     @Getter
     private PlayState state;
     @Getter
     private Score score;
 
     private HighLowPlayingContext(Long id,
-                                  GameId gameId, String userName, LocalDateTime startAt, int target, PlayState state, Score score,
+                                  GameId gameId, String userName,
+                                  LocalDateTime startAt,
+                                  Target target,
+                                  PlayState state, Score score,
                                   Long version) {
         this.id = id;
         if (Objects.isNull(gameId) && Objects.isNull(userName)) {
@@ -52,7 +58,7 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
         this.version = version;
     }
 
-    public static HighLowPlayingContext by(GameId gameId, String userName, LocalDateTime startAt, int target) {
+    public static HighLowPlayingContext by(GameId gameId, String userName, LocalDateTime startAt, Target target) {
         return new HighLowPlayingContext(null, gameId, userName, startAt, target, ON_GAME, Score.of(0), INIT_VERSION);
     }
 
@@ -69,8 +75,8 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
         this.gameId = gameId;
     }
 
-    private void setTarget(int target) {
-        if (target < 0) {
+    private void setTarget(Target target) {
+        if (target.getValue() < 0) {
             throw new IllegalStateException("target is invalid");
         }
         this.target = target;
