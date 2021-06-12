@@ -1,4 +1,4 @@
-package org.slipp.masil.games.infrastructures.listeners;
+package org.slipp.masil.games.application.listeners;
 
 import org.slipp.masil.games.domains.highrow.HighLowPlayingContext;
 import org.slipp.masil.games.domains.highrow.MatchedHighLowPlay;
@@ -9,12 +9,12 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class HighLowPlayEventListener {
+public class DomainEventListener {
 
     EventStore eventStore;
     ApplicationContext applicationContext;
 
-    public HighLowPlayEventListener(EventStore eventStore ,ApplicationContext applicationContext) {
+    public DomainEventListener(EventStore eventStore , ApplicationContext applicationContext) {
         this.eventStore = eventStore;
         this.applicationContext = applicationContext;
     }

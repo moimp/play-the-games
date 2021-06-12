@@ -1,4 +1,4 @@
-package org.slipp.masil.games.infrastructures.listeners;
+package org.slipp.masil.games.application.listeners;
 
 import org.slipp.masil.games.application.RankingApplicationService;
 import org.slipp.masil.games.domains.highrow.HighLowPlayingContext;
