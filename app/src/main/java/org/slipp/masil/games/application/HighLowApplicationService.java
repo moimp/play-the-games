@@ -2,12 +2,13 @@ package org.slipp.masil.games.application;
 
 import lombok.AccessLevel;
 import lombok.Getter;
-import org.slipp.masil.games.domains.highrow.*;
+import org.slipp.masil.games.domains.highrow.HighLowPlayService;
+import org.slipp.masil.games.domains.highrow.HighLowPlayStart;
+import org.slipp.masil.games.domains.highrow.HighLowPlayStop;
+import org.slipp.masil.games.domains.highrow.HighLowPlayingContextRepository;
 import org.slipp.masil.games.domains.highrow.judge.HighLowJudge;
-import org.slipp.masil.games.domains.highrow.judge.ThreeDigitHighLowJudge;
 import org.slipp.masil.games.domains.target.Target;
 import org.slipp.masil.games.utils.RandomUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
