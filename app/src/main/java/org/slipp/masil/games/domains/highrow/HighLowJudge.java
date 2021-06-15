@@ -32,7 +32,6 @@ public class HighLowJudge implements Judge {
     }
 
     public void reset() {
-        Target target = difficultyLevel.create();
-        this.target = Target.of(6L);
+        this.target = difficultyLevel.create();
     }
 }
