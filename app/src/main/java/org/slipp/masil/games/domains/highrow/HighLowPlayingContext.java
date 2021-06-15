@@ -85,6 +85,9 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
     }
 
     public void stop() {
+        if (getState().equals(PlayState.ENDED)){
+            throw new IllegalStateException("already ended game");
+        }
         this.setState(ENDED);
         andEvent(new HighLowPlayStopped(this));
     }

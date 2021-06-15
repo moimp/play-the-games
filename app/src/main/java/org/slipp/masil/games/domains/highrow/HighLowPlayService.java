@@ -26,13 +26,9 @@ public class HighLowPlayService {
         contextRepository.save(context);
         return context.getId();
     }
-    // TODO 도메인 상으로 내려야 한다.
+
     public void stop(StopHighLowPlay command) {
         HighLowPlayingContext context = contextRepository.findById(command.getContextId());
-        if (context.getState().equals(PlayState.ENDED)){
-            throw new IllegalStateException("already ended game");
-        }
-
         context.stop();
         contextRepository.save(context);
     }
