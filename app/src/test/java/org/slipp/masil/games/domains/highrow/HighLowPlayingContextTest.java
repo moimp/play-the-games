@@ -2,6 +2,7 @@ package org.slipp.masil.games.domains.highrow;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.slipp.masil.games.domains.Score;
+import org.slipp.masil.games.domains.Target;
 import org.slipp.masil.games.domains.game.GameId;
 
 import java.time.LocalDateTime;
@@ -19,12 +20,12 @@ class HighLowPlayingContextTest {
     void setUp() {
         GameId gameId = GameId.of(1L);
         LocalDateTime startAt = LocalDateTime.now();
-        sut = HighLowPlayingContext.by(gameId, userName, startAt, target);
+        sut = HighLowPlayingContext.by(gameId, userName, startAt, Target.of(target));
 
         assertThat(sut.getGameId()).isEqualTo(gameId);
         assertThat(sut.getUserName()).isEqualTo(userName);
         assertThat(sut.getStartAt()).isEqualTo(startAt);
-        assertThat(sut.getTarget()).isEqualTo(target);
+        assertThat(sut.getTarget()).isEqualTo(Target.of(target));
         assertThat(sut.getState()).isEqualTo(ON_GAME);
         assertThat(sut.getScore()).isEqualTo(Score.of(0));
     }

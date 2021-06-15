@@ -14,12 +14,7 @@ public class HighLowApplicationService {
     final HighLowPlayService highLowPlayService;
 
     public HighLowApplicationService(HighLowPlayingContextRepository contextRepository) {
-        this.highLowPlayService = new HighLowPlayService(new HighLowJudge() {
-            @Override
-            public HighLowJudgement judge(Long guessNumber) {
-                return HighLowJudgement.LOW;
-            }
-        }, contextRepository);
+        this.highLowPlayService = new HighLowPlayService(guessNumber -> HighLowJudgement.LOW, contextRepository);
     }
 
     @Transactional

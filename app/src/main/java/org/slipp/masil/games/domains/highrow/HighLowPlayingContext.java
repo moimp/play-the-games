@@ -3,6 +3,7 @@ package org.slipp.masil.games.domains.highrow;
 import lombok.Getter;
 import org.slipp.masil.games.domains.PlayState;
 import org.slipp.masil.games.domains.Score;
+import org.slipp.masil.games.domains.Target;
 import org.slipp.masil.games.domains.game.GameId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
@@ -30,14 +31,14 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
     @Getter
     private LocalDateTime startAt;
     @Getter
-    private int target;
+    private Target target;
     @Getter
     private PlayState state;
     @Getter
     private Score score;
 
     private HighLowPlayingContext(Long id,
-                                  GameId gameId, String userName, LocalDateTime startAt, int target, PlayState state, Score score,
+                                  GameId gameId, String userName, LocalDateTime startAt, Target target, PlayState state, Score score,
                                   Long version) {
         this.id = id;
         if (Objects.isNull(gameId) && Objects.isNull(userName)) {
@@ -52,7 +53,7 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
         this.version = version;
     }
 
-    public static HighLowPlayingContext by(GameId gameId, String userName, LocalDateTime startAt, int target) {
+    public static HighLowPlayingContext by(GameId gameId, String userName, LocalDateTime startAt, Target target) {
         return new HighLowPlayingContext(null, gameId, userName, startAt, target, ON_GAME, Score.of(0), INIT_VERSION);
     }
 
@@ -69,10 +70,7 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
         this.gameId = gameId;
     }
 
-    private void setTarget(int target) {
-        if (target < 0) {
-            throw new IllegalStateException("target is invalid");
-        }
+    private void setTarget(Target target) {
         this.target = target;
     }
 
