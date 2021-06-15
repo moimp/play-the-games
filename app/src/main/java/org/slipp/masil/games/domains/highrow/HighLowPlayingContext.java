@@ -66,14 +66,14 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
         this.gameId = gameId;
     }
 
-    public void setState(PlayState state) {
+    private void setState(PlayState state) {
         if (Objects.isNull(state)) {
             throw new IllegalArgumentException("state is invalid");
         }
         this.state = state;
     }
 
-    public void setScore(Score score) {
+    private void setScore(Score score) {
         if (Objects.isNull(score) || score.isValid() == false) {
             throw new IllegalArgumentException("score is invalid");
         }
@@ -94,6 +94,10 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
 
     public void match() {
         andEvent(new HighLowPlayMatched(this));
+    }
+
+    public void tryPlay(){
+        this.setScore(score.plus());
     }
 
 }

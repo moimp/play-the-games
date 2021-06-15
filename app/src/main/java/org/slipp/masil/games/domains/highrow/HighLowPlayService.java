@@ -2,7 +2,6 @@ package org.slipp.masil.games.domains.highrow;
 
 
 import org.slipp.masil.games.domains.Judge;
-import org.slipp.masil.games.domains.PlayState;
 
 public class HighLowPlayService {
 
@@ -35,6 +34,7 @@ public class HighLowPlayService {
 
     public HighLowPlayingResult play(GuessHighLowNumber command) {
         HighLowPlayingContext context = contextRepository.findById(command.getContextId());
+        context.tryPlay();
         HighLowJudgement judgement = this.judge.judge(command.getGuessNumber());
         if (judgement == HighLowJudgement.MATCH) {
             context.match();
