@@ -7,8 +7,8 @@ import org.slipp.masil.games.domains.game.DifficultyLevel;
 
 public class HighLowJudge implements Judge {
 
-    private Target target;
     private final DifficultyLevel difficultyLevel;
+    private Target target;
 
     public HighLowJudge(DifficultyLevel difficultyLevel) {
         this.difficultyLevel = difficultyLevel;
@@ -18,9 +18,9 @@ public class HighLowJudge implements Judge {
     @Override
     public HighLowJudgement judge(Long guessNumber) {
         Long value = this.target.getValue();
-        if (value > guessNumber){
+        if (value > guessNumber) {
             return HighLowJudgement.LOW;
-        } else if (value < guessNumber){
+        } else if (value < guessNumber) {
             return HighLowJudgement.HIGH;
         }
         return HighLowJudgement.MATCH;

@@ -1,7 +1,6 @@
 package org.slipp.masil.games.domains.game;
 
 import org.slipp.masil.games.domains.Target;
-import org.slipp.masil.games.util.RandomUtil;
 
 import java.util.function.Supplier;
 

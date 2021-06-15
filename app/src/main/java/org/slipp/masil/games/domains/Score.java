@@ -10,7 +10,7 @@ public class Score {
         return value >= 0;
     }
 
-    public Score plus(){
+    public Score plus() {
         return Score.of(value + 1);
     }
 }
