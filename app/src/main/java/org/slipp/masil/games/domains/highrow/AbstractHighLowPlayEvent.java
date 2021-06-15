@@ -9,7 +9,6 @@ import java.util.TimeZone;
 
 public abstract class AbstractHighLowPlayEvent<T>  implements DomainEvent<T> {
 
-    @Getter
     private T aggregateRoot;
 
     /** use serialVersionUID from Spring 1.2 for interoperability. */
