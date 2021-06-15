@@ -24,10 +24,9 @@ class HighLowPlayingContextRepositoryTest {
 	@Test
 	void saveAndFind() {
 
-		Target target = Target.of(10);
 		GameId gameId = GameId.of(1L);
 		String userName = "Len";
-		play = HighLowPlayingContext.by(gameId, userName, LocalDateTime.now(), target);
+		play = HighLowPlayingContext.by(gameId, userName, LocalDateTime.now());
 
 		HighLowPlayingContext save = repository.save(play);
 		HighLowPlayingContext find = repository.findById(save.getId());

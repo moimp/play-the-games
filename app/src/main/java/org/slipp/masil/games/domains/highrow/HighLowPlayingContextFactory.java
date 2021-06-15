@@ -1,7 +1,5 @@
 package org.slipp.masil.games.domains.highrow;
 
-import org.slipp.masil.games.domains.Target;
-
 import java.time.LocalDateTime;
 
 public interface HighLowPlayingContextFactory {
@@ -15,7 +13,6 @@ public interface HighLowPlayingContextFactory {
 
 
     default HighLowPlayingContext create(StartHighLowPlay command) {
-        return HighLowPlayingContext.by(command.getGameId(), command.getUsername(),
-                LocalDateTime.now(), Target.of(10));
+        return HighLowPlayingContext.by(command.getGameId(), command.getUsername(), LocalDateTime.now());
     }
 }

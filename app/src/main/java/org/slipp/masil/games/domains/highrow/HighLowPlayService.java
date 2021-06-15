@@ -1,19 +1,20 @@
 package org.slipp.masil.games.domains.highrow;
 
 
+import org.slipp.masil.games.domains.Judge;
 import org.slipp.masil.games.domains.PlayState;
 
 public class HighLowPlayService {
 
-    private HighLowJudge judge;
+    private final Judge judge;
     private final HighLowPlayingContextFactory contextFactory;
     private final HighLowPlayingContextRepository contextRepository;
 
-    public HighLowPlayService(HighLowJudge judge, HighLowPlayingContextRepository contextRepository) {
+    public HighLowPlayService(Judge judge, HighLowPlayingContextRepository contextRepository) {
         this(judge, HighLowPlayingContextFactory.DEFAULT, contextRepository);
     }
 
-    public HighLowPlayService(HighLowJudge judge, HighLowPlayingContextFactory contextFactory, HighLowPlayingContextRepository contextRepository) {
+    public HighLowPlayService(Judge judge, HighLowPlayingContextFactory contextFactory, HighLowPlayingContextRepository contextRepository) {
         this.judge = judge;
         this.contextFactory = contextFactory;
         this.contextRepository = contextRepository;

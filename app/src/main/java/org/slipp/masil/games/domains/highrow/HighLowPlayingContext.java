@@ -3,7 +3,6 @@ package org.slipp.masil.games.domains.highrow;
 import lombok.Getter;
 import org.slipp.masil.games.domains.PlayState;
 import org.slipp.masil.games.domains.Score;
-import org.slipp.masil.games.domains.Target;
 import org.slipp.masil.games.domains.game.GameId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
@@ -31,14 +30,12 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
     @Getter
     private LocalDateTime startAt;
     @Getter
-    private Target target;
-    @Getter
     private PlayState state;
     @Getter
     private Score score;
 
     private HighLowPlayingContext(Long id,
-                                  GameId gameId, String userName, LocalDateTime startAt, Target target, PlayState state, Score score,
+                                  GameId gameId, String userName, LocalDateTime startAt, PlayState state, Score score,
                                   Long version) {
         this.id = id;
         if (Objects.isNull(gameId) && Objects.isNull(userName)) {
@@ -47,14 +44,13 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
         setGameId(gameId);
         setUserName(userName);
         setStartAt(startAt);
-        setTarget(target);
         setState(state);
         setScore(score);
         this.version = version;
     }
 
-    public static HighLowPlayingContext by(GameId gameId, String userName, LocalDateTime startAt, Target target) {
-        return new HighLowPlayingContext(null, gameId, userName, startAt, target, ON_GAME, Score.of(0), INIT_VERSION);
+    public static HighLowPlayingContext by(GameId gameId, String userName, LocalDateTime startAt) {
+        return new HighLowPlayingContext(null, gameId, userName, startAt, ON_GAME, Score.of(0), INIT_VERSION);
     }
 
     private void setStartAt(LocalDateTime startAt) {
@@ -68,10 +64,6 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
 
     private void setGameId(GameId gameId) {
         this.gameId = gameId;
-    }
-
-    private void setTarget(Target target) {
-        this.target = target;
     }
 
     public void setState(PlayState state) {
