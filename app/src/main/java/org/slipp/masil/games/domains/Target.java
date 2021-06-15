@@ -7,9 +7,9 @@ import org.springframework.data.relational.core.mapping.Column;
 public class Target {
 
     @Column(value = "TARGET")
-    int value;
+    Long value;
 
-    public Target(int value) {
+    public Target(Long value) {
         if (value < 0) {
             throw new IllegalStateException("target is invalid");
         }

@@ -71,21 +71,21 @@ public class Converters {
     }
 
     @WritingConverter
-    public enum TargetToInteger implements Converter<Target, Integer> {
+    public enum TargetToLong implements Converter<Target, Long> {
         INSTANCE;
 
         @Override
-        public Integer convert(Target source) {
+        public Long convert(Target source) {
             return source.getValue();
         }
     }
 
     @ReadingConverter
-    public enum IntegerToTarget implements Converter<Integer, Target> {
+    public enum LongToTarget implements Converter<Long, Target> {
         INSTANCE;
 
         @Override
-        public Target convert(Integer source) {
+        public Target convert(Long source) {
             return Target.of(source);
         }
     }

@@ -17,7 +17,7 @@ public class DataJdbcConfig extends AbstractJdbcConfiguration {
                 Converters.RankingIdToLong.INSTANCE, Converters.LongToRankingId.INSTANCE,
                 Converters.ScoreToInteger.INSTANCE, Converters.IntegerToScore.INSTANCE,
                 Converters.GameIdToLong.INSTANCE, Converters.LongToGameId.INSTANCE,
-                Converters.TargetToInteger.INSTANCE, Converters.IntegerToTarget.INSTANCE
+                Converters.TargetToLong.INSTANCE, Converters.LongToTarget.INSTANCE
         ));
     }
 }
