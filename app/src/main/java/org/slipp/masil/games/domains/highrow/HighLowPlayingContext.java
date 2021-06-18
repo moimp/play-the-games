@@ -75,6 +75,11 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
             throw new IllegalArgumentException("state is invalid");
         }
 
+        if(this.state == null) {
+            this.state = state;
+            return;
+        }
+
         if(isOn() && state == ON_GAME) {
             throw new IllegalStateException();
         }
@@ -90,7 +95,8 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
         if(isOff() && state == ENDED) {
             throw new IllegalStateException();
         }
-        this.state = state;
+
+        this.state = this.state.changeTo(state);
     }
 
     private void setScore(Score score) {
