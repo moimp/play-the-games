@@ -80,22 +80,6 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
             return;
         }
 
-        if(isOn() && state == ON_GAME) {
-            throw new IllegalStateException();
-        }
-
-        if(! isOn() && state == ENDED) {
-            throw new IllegalStateException();
-        }
-
-        if(isOff() && state == ON_GAME) {
-            throw new IllegalStateException();
-        }
-
-        if(isOff() && state == ENDED) {
-            throw new IllegalStateException();
-        }
-
         this.state = this.state.changeTo(state);
     }
 
