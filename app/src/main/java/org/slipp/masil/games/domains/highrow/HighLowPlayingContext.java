@@ -93,10 +93,6 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
     }
 
     private void setState(PlayState state) {
-        if (Objects.isNull(state)) {
-            throw new IllegalArgumentException("state is invalid");
-        }
-
         if(this.state == null) {
             this.state = state;
             return;
