@@ -113,10 +113,10 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
     }
 
     public boolean isOn() {
-        return ON_GAME == getState();
+        return getState().isOn();
     }
 
     public boolean isOff() {
-        return ENDED == getState();
+        return getState().isOff();
     }
 }
