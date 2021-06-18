@@ -16,7 +16,6 @@ public class RankingItem implements Comparable<RankingItem> {
     Score score;
     LocalDateTime rankedAt;
 
-
     @Override
     public int compareTo(RankingItem rankingItem) {
         return rankingItem.getScore().getValue() - this.getScore().getValue();

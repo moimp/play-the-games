@@ -5,7 +5,6 @@ package org.slipp.masil;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
@@ -13,6 +12,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 public class App {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext app = SpringApplication.run(App.class, args);
+        SpringApplication.run(App.class, args);
     }
 }

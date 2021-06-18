@@ -22,8 +22,7 @@ public class HighLowPlayService {
     public Long start(StartHighLowPlay command) {
         HighLowPlayingContext context = contextFactory.create(command);
         context.start();
-        contextRepository.save(context);
-        return context.getId();
+        return contextRepository.save(context).getId();
     }
 
     public void stop(StopHighLowPlay command) {
