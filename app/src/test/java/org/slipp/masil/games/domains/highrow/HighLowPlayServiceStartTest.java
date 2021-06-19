@@ -42,6 +42,9 @@ class HighLowPlayServiceStartTest {
     @Test
     void start() {
         given(contextFactory.create(command)).willReturn(context);
+        given(repository.save(context)).willReturn(context);
+        given(context.getId()).willReturn(1L);
+
         sut.start(command);
 
         verify(context).start();
