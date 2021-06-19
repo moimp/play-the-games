@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
 
 @Service
 public class RankingApplicationService {
@@ -25,9 +27,20 @@ public class RankingApplicationService {
                         String userName,
                         Score score) {
         Ranking ranking = repository.findById(RankingId.of(gameId));
-
+        if (Objects.isNull(ranking)){
+            ranking = Ranking.of(gameId, 10);
+        }
         RankingItem newInfo = RankingItem.of(userName, score, LocalDateTime.now());
         ranking.refresh(newInfo);
         repository.save(ranking);
+    }
+
+
+    public Ranking getRanking(GameId gameId){
+        Ranking ranking = repository.findById(RankingId.of(gameId));
+        if (Objects.isNull(ranking)){
+            ranking = Ranking.of(GameId.of(1L), 10);
+        }
+        return ranking;
     }
 }

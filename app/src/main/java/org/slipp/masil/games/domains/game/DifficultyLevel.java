@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 
 public enum DifficultyLevel {
     //    RandomUtil.generateNumbers(1, 9)
-    EASY(() -> 1L);
+    EASY(() -> 3L);
 
     private final Supplier<Long> generator;
 

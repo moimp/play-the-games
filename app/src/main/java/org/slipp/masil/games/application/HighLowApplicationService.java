@@ -3,10 +3,7 @@ package org.slipp.masil.games.application;
 import lombok.AccessLevel;
 import lombok.Getter;
 import org.slipp.masil.games.domains.game.DifficultyLevel;
-import org.slipp.masil.games.domains.highrow.HighLowJudge;
-import org.slipp.masil.games.domains.highrow.HighLowPlayService;
-import org.slipp.masil.games.domains.highrow.HighLowPlayingContextRepository;
-import org.slipp.masil.games.domains.highrow.StartHighLowPlay;
+import org.slipp.masil.games.domains.highrow.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,9 +21,15 @@ public class HighLowApplicationService {
     }
 
     @Transactional
-    public void start() {
-        StartHighLowPlay command = new StartHighLowPlay("Foo");
-        getHighLowPlayService().start(command);
+    public Long start(String name) {
+        StartHighLowPlay command = new StartHighLowPlay(name);
+        return getHighLowPlayService().start(command);
+    }
+
+    @Transactional
+    public HighLowJudgement play(GuessHighLowNumber guessHighLowNumber) {
+        HighLowPlayingResult result = getHighLowPlayService().play(guessHighLowNumber);
+        return result.getJudgement();
     }
 
     @Transactional
