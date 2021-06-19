@@ -28,7 +28,7 @@ class HighLowJudgeTest {
 
     @Test
     void match() {
-        Long guessNumber = 1L;
+        Long guessNumber = 3L;
         HighLowJudgement result = HighLowJudgement.MATCH;
 
         assertThat(sut.judge(guessNumber)).isEqualTo(result);
@@ -45,7 +45,7 @@ class HighLowJudgeTest {
     @Test
     void replay() {
         long guessNumber = 1L;
-        HighLowJudgement result = HighLowJudgement.MATCH;
+        HighLowJudgement result = HighLowJudgement.LOW;
         assertThat(sut.judge(guessNumber)).isEqualTo(result);
         guessNumber = 9L;
 
