@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HighLowGame</title>
+</head>
+<body>
+<br/>
+<p> 이름을 입력해주세요 </p>
+<br/>
+<form th:action=@{/games/${gameId}(gameId=${gameId})} method="post">
+    <label>
+        <input type="text" name="userName">
+        <input type="hidden" th:value="${gameId}">
+    </label>
+    <input type="submit" name="완료">
+</form>
+</body>
+</html>
