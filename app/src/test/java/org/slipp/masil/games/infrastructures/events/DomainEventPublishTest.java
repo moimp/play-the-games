@@ -26,7 +26,7 @@ class DomainEventPublishTest {
 
     @Test
     void publishStartedEvent() {
-        highLowApplicationService.start();
+        highLowApplicationService.start("mike");
 
         assertThat(applicationEvents.stream(HighLowPlayStarted.class)).hasSize(1);
     }
