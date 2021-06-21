@@ -1,5 +1,11 @@
 # Games 
 
+## Init Database on local
+
+```shell
+docker run --rm --name mypg -v ${PWD}/app/src/main/resources:/docker-entrypoint-initdb.d -p 5432:5432 -e POSTGRES_PASSWORD="password" -e POSTGRES_USER="masil" -e POSTGRES_DB="playthegames" -d postgres
+```
+
 ## User Stories
 
 - 사용자는 게임목록을 확인한다. 

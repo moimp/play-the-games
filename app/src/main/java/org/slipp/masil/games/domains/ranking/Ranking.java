@@ -22,7 +22,7 @@ public class Ranking {
     @Id
     private RankingId id;
     private int size;
-    @Column("RANKING_ID")
+    @Column("ranking_id")
     private List<RankingItem> items;
     @Version
     private Long version;
