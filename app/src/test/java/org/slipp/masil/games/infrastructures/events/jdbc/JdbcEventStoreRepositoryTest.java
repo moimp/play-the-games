@@ -10,10 +10,13 @@ import org.slipp.masil.games.infrastructures.events.sotre.EventStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.test.annotation.DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD;
 
 
+@Transactional
 @SpringBootTest
 @DirtiesContext(classMode = BEFORE_EACH_TEST_METHOD)
 class JdbcEventStoreRepositoryTest {
@@ -23,6 +26,7 @@ class JdbcEventStoreRepositoryTest {
     EventStore eventStore;
 
     @Test
+    @Rollback
     void save() {
         HighLowPlayingContext context = HighLowPlayingContextFactory.DEFAULT.create(new StartHighLowPlay("Foo"));
         HighLowPlayStarted domainEvent = new HighLowPlayStarted(context);
