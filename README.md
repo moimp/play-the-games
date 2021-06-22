@@ -1,9 +1,17 @@
 # Games 
 
+[![Build Status](https://travis-ci.com/moimp/play-the-games.svg?branch=main)](https://travis-ci.com/moimp/play-the-games)
+
 ## Init Database on local
 
 ```shell
-docker run --rm --name mypg -v ${PWD}/app/src/main/resources:/docker-entrypoint-initdb.d -p 5432:5432 -e POSTGRES_PASSWORD="password" -e POSTGRES_USER="masil" -e POSTGRES_DB="playthegames" -d postgres
+docker run --rm --name mypg -d \
+-v ${PWD}/app/src/main/resources:/docker-entrypoint-initdb.d \
+-p 5432:5432 \
+-e POSTGRES_PASSWORD="password" \
+-e POSTGRES_USER="abc" \
+-e POSTGRES_DB="playthegames"  \
+postgres
 ```
 
 ## User Stories
