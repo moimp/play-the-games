@@ -1,5 +1,7 @@
 # Games 
 
+[![Build Status](https://travis-ci.com/moimp/play-the-games.svg?branch=travis)](https://travis-ci.com/moimp/play-the-games)
+
 ## Init Database on local
 
 ```shell
