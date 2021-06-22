@@ -6,6 +6,8 @@ import org.slipp.masil.games.domains.Score;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +16,7 @@ import static org.slipp.masil.games.domains.ranking.RankingItem.NONE_RANK_ITEM;
 import static org.slipp.masil.games.domains.ranking.RankingItem.of;
 import static org.springframework.test.annotation.DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD;
 
+@Transactional
 @SpringBootTest
 @DirtiesContext(classMode = BEFORE_EACH_TEST_METHOD)
 public class RankingRepositoryTest {
@@ -31,6 +34,7 @@ public class RankingRepositoryTest {
     }
 
     @Test
+    @Rollback
     void saveAndFind() {
         Ranking find = repository.findById(saved.getId());
 

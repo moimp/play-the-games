@@ -7,3 +7,7 @@ spring:
   web:
     resources:
       static-locations: classpath:/swagger, classpath:/static
+  datasource:
+    url: jdbc:postgresql://localhost:5432/playthegames
+    username: masil
+    password: password
