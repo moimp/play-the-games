@@ -14,6 +14,12 @@ docker run --rm --name mypg -d \
 postgres
 ```
 
+## Run Application on local
+
+```shell
+SPRING_PROFILES_ACTIVE=local ./gradlew clean bootRun
+```
+
 ## User Stories
 
 - 사용자는 게임목록을 확인한다. 

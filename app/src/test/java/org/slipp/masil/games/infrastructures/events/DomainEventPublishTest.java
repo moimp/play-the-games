@@ -7,6 +7,7 @@ import org.slipp.masil.games.domains.highrow.HighLowPlayStarted;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.event.ApplicationEvents;
 import org.springframework.test.context.event.RecordApplicationEvents;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Transactional
+@ActiveProfiles("local")
 @RecordApplicationEvents
 @SpringBootTest
 class DomainEventPublishTest {
