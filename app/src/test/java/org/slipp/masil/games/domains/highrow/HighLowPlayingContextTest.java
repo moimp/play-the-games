@@ -56,7 +56,7 @@ class HighLowPlayingContextTest {
     @Test
     void tryPlay() {
         sut.start();
-        sut.tryPlay();
+        sut.retry();
 
         assertThat(sut.getScore()).isEqualTo(Score.of(1));
     }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HighLowRankingView</title>
+</head>
+<body>
+<table>
+    <tbody>
+    <tr>
+        <td>이름</td>
+        <td>점수</td>
+        <td>날짜</td>
+    </tr>
+    <tr th:each="rank : ${ranking}">
+        <td th:text="${rank.userName}"></td>
+        <td th:text="${rank.score.value}"></td>
+        <td th:text="${rank.rankedAt}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<td><a th:href="@{/games/__${gameId}__/}"> 다시 게임하기 </a></td>
+</body>
+</html>
