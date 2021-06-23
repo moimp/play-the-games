@@ -70,29 +70,6 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
         this.gameId = gameId;
     }
 
-    private void setState(PlayState state) {
-        if (Objects.isNull(state)) {
-            throw new IllegalArgumentException("state is invalid");
-        }
-
-        if(isOn() && state == ON_GAME) {
-            throw new IllegalStateException();
-        }
-
-        if(! isOn() && state == ENDED) {
-            throw new IllegalStateException();
-        }
-
-        if(isOff() && state == ON_GAME) {
-            throw new IllegalStateException();
-        }
-
-        if(isOff() && state == ENDED) {
-            throw new IllegalStateException();
-        }
-        this.state = state;
-    }
-
     private void setScore(Score score) {
         if (Objects.isNull(score) || score.isValid() == false) {
             throw new IllegalArgumentException("score is invalid");
@@ -106,9 +83,6 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
     }
 
     public void stop() {
-        if (getState().equals(PlayState.ENDED)) {
-            throw new IllegalStateException("already ended game");
-        }
         this.setState(ENDED);
         andEvent(new HighLowPlayStopped(this));
     }
@@ -116,6 +90,15 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
     public void match() {
         this.setState(ENDED);
         andEvent(new HighLowPlayMatched(this));
+    }
+
+    private void setState(PlayState state) {
+        if(this.state == null) {
+            this.state = state;
+            return;
+        }
+
+        this.state = this.state.changeTo(state);
     }
 
     public void tryPlay() {
@@ -126,10 +109,10 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
     }
 
     public boolean isOn() {
-        return ON_GAME == getState();
+        return getState().isOn();
     }
 
     public boolean isOff() {
-        return ENDED == getState();
+        return getState().isOff();
     }
 }
