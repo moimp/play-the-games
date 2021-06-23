@@ -28,7 +28,7 @@ public class RankingRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        RankingId id = RankingId.of(1L);
+        RankingId id = RankingId.of(10L);
         Ranking ranking = Ranking.of(id, 3);
         saved = repository.save(ranking);
     }
