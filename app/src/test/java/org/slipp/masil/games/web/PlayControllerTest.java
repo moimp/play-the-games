@@ -10,9 +10,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @WebMvcTest
 class PlayControllerTest {
@@ -26,6 +30,29 @@ class PlayControllerTest {
     @MockBean
     HighLowApplicationService highLowApplicationService;
 
+    @MockBean
+    RankingController rankingController;
+
+    @Test
+    void startHighLowGameButton() throws Exception {
+        mockMvc.perform(get("/games/{gameId}", 1))
+                .andExpect(view().name("highlow/beforePlaying"))
+                .andDo(print())
+                .andExpect(model().attribute("gameId", "1"));
+    }
+
+    @Test
+    void userNameAndGameStart() throws Exception {
+        given(highLowApplicationService.start("mike")).willReturn(1L);
+
+        mockMvc.perform(post("/games/{gameId}", 1)
+                .param("userName", "mike")
+        )
+                .andExpect(view().name("highlow/playing"))
+                .andExpect(model().attributeExists("contextId"))
+                .andExpect(model().attribute("userName", "mike"));
+    }
+
     @Test
     void low_result_playing() throws Exception {
         when(highLowApplicationService.start("mike")).thenReturn(1L);
@@ -37,9 +64,10 @@ class PlayControllerTest {
                 .param("contextId", "1")
                 .param("userName", "mike")
         )
-                .andExpect(view().name("playingHighLowGame"))
+                .andExpect(view().name("highlow/playing"))
                 .andExpect(model().attribute("result", "LOW"))
                 .andExpect(model().attribute("contextId", 1L))
+                .andExpect(model().attribute("gameId", "1"))
                 .andExpect(model().attribute("userName", "mike"));
     }
 
@@ -54,9 +82,10 @@ class PlayControllerTest {
                 .param("contextId", "1")
                 .param("userName", "mike")
         )
-                .andExpect(view().name("playingHighLowGame"))
+                .andExpect(view().name("highlow/playing"))
                 .andExpect(model().attribute("result", "HIGH"))
                 .andExpect(model().attribute("contextId", 1L))
+                .andExpect(model().attribute("gameId", "1"))
                 .andExpect(model().attribute("userName", "mike"));
     }
 
@@ -71,9 +100,10 @@ class PlayControllerTest {
                 .param("contextId", "1")
                 .param("userName", "mike")
         )
-                .andExpect(view().name("playingHighLowGame"))
+                .andExpect(view().name("highlow/playing"))
                 .andExpect(model().attribute("result", "MATCH"))
                 .andExpect(model().attribute("contextId", 1L))
+                .andExpect(model().attribute("gameId", "1"))
                 .andExpect(model().attribute("userName", "mike"));
     }
 }

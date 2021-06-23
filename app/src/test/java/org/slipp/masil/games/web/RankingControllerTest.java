@@ -34,7 +34,7 @@ class RankingControllerTest {
         when(repository.findById(RankingId.of(1L))).thenReturn(ranking);
 
         mockMvc.perform(get("/ranking/{gameId}", "1"))
-                .andExpect(view().name("rankingView"))
+                .andExpect(view().name("highlow/ranking"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("gameId", "1"))
                 .andExpect(model().attributeExists("ranking"))
