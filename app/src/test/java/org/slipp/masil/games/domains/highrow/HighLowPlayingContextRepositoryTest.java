@@ -30,11 +30,11 @@ class HighLowPlayingContextRepositoryTest {
 
 		GameId gameId = GameId.of(1L);
 		String userName = "Len";
-		play = HighLowPlayingContext.by(gameId, userName, LocalDateTime.now());
+		play = HighLowPlayingContext.by(gameId, userName, Target.of(10L));
 
 		HighLowPlayingContext save = repository.save(play);
 		HighLowPlayingContext find = repository.findById(save.getId());
 
-		assertThat(find).isNotNull();
+		assertThat(find.getTarget()).isEqualTo(10L);
 	}
 }
