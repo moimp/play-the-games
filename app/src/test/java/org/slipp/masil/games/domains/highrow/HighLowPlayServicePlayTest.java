@@ -5,18 +5,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.slipp.masil.games.domains.Judge;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
-import static org.slipp.masil.games.domains.highrow.HighLowJudgement.*;
 
 @ExtendWith(MockitoExtension.class)
 class HighLowPlayServicePlayTest {
 
-    private static final long ANY_GUESS_NUMBER = 0L;
+    private static final Long ANY_CONTEXT_ID = 0L;
 
     @Mock
     HighLowPlayingContextRepository repository;
@@ -24,28 +21,21 @@ class HighLowPlayServicePlayTest {
     @Mock
     HighLowPlayingContext context;
 
-    @Mock
-    Judge judge;
-
-    GuessHighLowNumber guessCommand;
-
     HighLowPlayService sut;
 
     @BeforeEach
     void setUp() {
-        sut = new HighLowPlayService(judge, repository);
-        given(repository.findById(ANY_GUESS_NUMBER)).willReturn(context);
+        sut = new HighLowPlayService(repository);
+        given(repository.findById(any())).willReturn(context);
 
-        guessCommand = GuessHighLowNumber.of(context.getId(), ANY_GUESS_NUMBER);
     }
 
     @Test
     void in_high_judgement_the_context_makes_nothing() {
-        given(judge.judge(guessCommand.getGuessNumber())).willReturn(HIGH);
+        given(context.getTarget()).willReturn(3L);
 
-        HighLowPlayingResult result = sut.play(guessCommand);
+        sut.play(GuessHighLowNumber.of(ANY_CONTEXT_ID, 4L));
 
-        assertThat(result.getJudgement()).isEqualTo(HIGH);
         verify(context).retry();
         verify(context, never()).match();
         verify(repository, times(1)).save(any(HighLowPlayingContext.class));
@@ -53,11 +43,10 @@ class HighLowPlayServicePlayTest {
 
     @Test
     void in_low_judgement_the_context_makes_nothing() {
-        given(judge.judge(guessCommand.getGuessNumber())).willReturn(LOW);
+        given(context.getTarget()).willReturn(3L);
 
-        HighLowPlayingResult result = sut.play(guessCommand);
+        sut.play(GuessHighLowNumber.of(ANY_CONTEXT_ID, 2L));
 
-        assertThat(result.getJudgement()).isEqualTo(LOW);
         verify(context).retry();
         verify(context, never()).match();
         verify(repository, times(1)).save(any(HighLowPlayingContext.class));
@@ -65,11 +54,10 @@ class HighLowPlayServicePlayTest {
 
     @Test
     void in_match_judgement_the_context_occurs_command_to_match() {
-        given(judge.judge(guessCommand.getGuessNumber())).willReturn(MATCH);
+        given(context.getTarget()).willReturn(3L);
 
-        HighLowPlayingResult result = sut.play(guessCommand);
+        sut.play(GuessHighLowNumber.of(ANY_CONTEXT_ID, 3L));
 
-        assertThat(result.getJudgement()).isEqualTo(MATCH);
         verify(context).match();
         verify(context).retry();
         verify(repository, times(2)).save(any(HighLowPlayingContext.class));
