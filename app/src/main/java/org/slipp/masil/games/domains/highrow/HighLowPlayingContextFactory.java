@@ -1,6 +1,5 @@
 package org.slipp.masil.games.domains.highrow;
 
-import org.slipp.masil.games.domains.Target;
 import org.slipp.masil.games.domains.game.DifficultyLevel;
 
 public interface HighLowPlayingContextFactory {

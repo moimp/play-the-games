@@ -1,10 +1,7 @@
 package org.slipp.masil.games.domains.highrow;
 
-import org.slipp.masil.games.domains.Judge;
-import org.slipp.masil.games.domains.Target;
 
-
-public class HighLowJudge implements Judge {
+public class HighLowJudge {
 
     private final Target target;
 
@@ -12,7 +9,6 @@ public class HighLowJudge implements Judge {
         this.target = target;
     }
 
-    @Override
     public HighLowJudgement judge(Long guessNumber) {
         Long value = this.target.getValue();
         if (value > guessNumber) {

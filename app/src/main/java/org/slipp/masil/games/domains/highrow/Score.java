@@ -1,4 +1,4 @@
-package org.slipp.masil.games.domains;
+package org.slipp.masil.games.domains.highrow;
 
 import lombok.Value;
 
