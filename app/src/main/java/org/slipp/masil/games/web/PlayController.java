@@ -1,7 +1,6 @@
 package org.slipp.masil.games.web;
 
 import org.slipp.masil.games.application.HighLowApplicationService;
-import org.slipp.masil.games.application.RankingApplicationService;
 import org.slipp.masil.games.domains.highrow.GuessHighLowNumber;
 import org.slipp.masil.games.domains.highrow.HighLowJudgement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +27,6 @@ public class PlayController {
         HighLowJudgement play = highLowApplicationService.play(GuessHighLowNumber.of(contextId, guessNumber));
 
         ModelAndView mv = new ModelAndView();
-        if (play == HighLowJudgement.MATCH){
-            mv.setViewName("redirect:/rankingView");
-            mv.addObject("result", play.name());
-            mv.addObject("userName", userName);
-            mv.addObject("contextId", contextId);
-            return mv;
-        }
         mv.setViewName("playingHighLowGame");
         mv.addObject("result", play.name());
         mv.addObject("userName", userName);

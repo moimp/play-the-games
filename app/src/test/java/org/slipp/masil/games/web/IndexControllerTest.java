@@ -21,6 +21,9 @@ class IndexControllerTest {
     @MockBean
     HighLowApplicationService applicationService;
 
+    @MockBean
+    RankingController rankingController;
+
     @Test
     void indexView() throws Exception {
         mockMvc.perform(get("/"))

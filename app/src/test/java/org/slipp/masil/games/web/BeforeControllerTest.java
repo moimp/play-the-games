@@ -22,6 +22,9 @@ class BeforeControllerTest {
     @MockBean
     HighLowApplicationService highLowApplicationService;
 
+    @MockBean
+    RankingController rankingController;
+
     @Test
     void postUserNameAndGameStart() throws Exception {
         given(highLowApplicationService.start("mike")).willReturn(1L);

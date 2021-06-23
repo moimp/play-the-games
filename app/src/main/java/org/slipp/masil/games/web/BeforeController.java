@@ -24,6 +24,7 @@ public class BeforeController {
         mv.setViewName("playingHighLowGame");
         mv.addObject("contextId", contextId);
         mv.addObject("userName", userName);
+        mv.addObject("gameId", gameId);
 
       return mv;
     }

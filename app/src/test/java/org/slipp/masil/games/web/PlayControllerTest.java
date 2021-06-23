@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 import org.slipp.masil.games.application.HighLowApplicationService;
 import org.slipp.masil.games.domains.highrow.GuessHighLowNumber;
 import org.slipp.masil.games.domains.highrow.HighLowJudgement;
+import org.slipp.masil.games.domains.ranking.RankingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -19,6 +19,9 @@ class PlayControllerTest {
 
     @Autowired
     MockMvc mockMvc;
+
+    @MockBean
+    RankingRepository repository;
 
     @MockBean
     HighLowApplicationService highLowApplicationService;
@@ -68,8 +71,7 @@ class PlayControllerTest {
                 .param("contextId", "1")
                 .param("userName", "mike")
         )
-                .andExpect(view().name("redirect:/rankingView"))
-                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("playingHighLowGame"))
                 .andExpect(model().attribute("result", "MATCH"))
                 .andExpect(model().attribute("contextId", 1L))
                 .andExpect(model().attribute("userName", "mike"));
