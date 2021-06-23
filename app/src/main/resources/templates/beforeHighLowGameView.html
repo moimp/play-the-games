@@ -7,8 +7,7 @@
 <body>
 <br/>
 <p> 이름을 입력해주세요 </p>
-<br/>
-<form th:action=@{/games/${gameId}(gameId=${gameId})} method="post">
+<form th:action="@{/games/__${gameId}__}" method="post">
     <label>
         <input type="text" name="userName">
         <input type="hidden" th:value="${gameId}">
