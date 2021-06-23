@@ -15,8 +15,7 @@ public class HighLowApplicationService {
     final HighLowPlayService highLowPlayService;
 
     public HighLowApplicationService(HighLowPlayingContextRepository contextRepository) {
-        DifficultyLevel easy = DifficultyLevel.EASY;
-        HighLowJudge highLowJudge = new HighLowJudge(easy);
+        HighLowJudge highLowJudge = new HighLowJudge(DifficultyLevel.EASY.create());
         this.highLowPlayService = new HighLowPlayService(highLowJudge, contextRepository);
     }
 
