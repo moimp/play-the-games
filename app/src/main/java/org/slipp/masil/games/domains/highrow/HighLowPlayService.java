@@ -34,11 +34,13 @@ public class HighLowPlayService {
 
     public HighLowPlayingResult play(GuessHighLowNumber command) {
         HighLowPlayingContext context = contextRepository.findById(command.getContextId());
-        context.tryPlay();
+        context.retry();
+        contextRepository.save(context);
         HighLowJudgement judgement = this.judge.judge(command.getGuessNumber());
         if (judgement == HighLowJudgement.MATCH) {
-            context.match();
-            contextRepository.save(context);
+            HighLowPlayingContext save = contextRepository.findById(command.getContextId());
+            save.match();
+            contextRepository.save(save);
         }
         return new HighLowPlayingResult(command.getContextId(), judgement);
     }

@@ -60,7 +60,7 @@ class HighLowPlayingContextStateExceptionTest {
         assertThat(sut.isOn()).isFalse();
 
         assertThatThrownBy(
-                () -> sut.tryPlay()
+                () -> sut.retry()
         ).isInstanceOf(IllegalStateException.class);
     }
 
@@ -112,7 +112,7 @@ class HighLowPlayingContextStateExceptionTest {
         assertThat(sut.isOff()).isTrue();
 
         assertThatThrownBy(
-                () -> sut.tryPlay()
+                () -> sut.retry()
         ).isInstanceOf(IllegalStateException.class);
     }
 }

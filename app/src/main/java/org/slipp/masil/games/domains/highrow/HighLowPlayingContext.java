@@ -101,11 +101,12 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
         this.state = this.state.changeTo(state);
     }
 
-    public void tryPlay() {
+    public void retry() {
         if(!isOn()){
             throw new IllegalStateException();
         }
-        this.setScore(score.plus());
+        Score plus = score.plus();
+        this.setScore(plus);
     }
 
     public boolean isOn() {
