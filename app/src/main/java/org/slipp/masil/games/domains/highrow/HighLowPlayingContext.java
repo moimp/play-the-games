@@ -2,8 +2,6 @@ package org.slipp.masil.games.domains.highrow;
 
 import lombok.Getter;
 import org.slipp.masil.games.domains.PlayState;
-import org.slipp.masil.games.domains.Score;
-import org.slipp.masil.games.domains.Target;
 import org.slipp.masil.games.domains.game.GameId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
@@ -33,7 +31,7 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
     private PlayState state;
 
     @Getter
-    private Long target;
+    private final Long target;
 
     @Getter
     private Score score;
@@ -94,7 +92,7 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
     }
 
     private void setState(PlayState state) {
-        if(this.state == null) {
+        if (this.state == null) {
             this.state = state;
             return;
         }
@@ -103,7 +101,7 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
     }
 
     public void retry() {
-        if(!isOn()){
+        if (!isOn()) {
             throw new IllegalStateException();
         }
         Score plus = score.plus();

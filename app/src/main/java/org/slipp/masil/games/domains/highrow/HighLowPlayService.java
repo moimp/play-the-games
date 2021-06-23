@@ -1,9 +1,6 @@
 package org.slipp.masil.games.domains.highrow;
 
 
-import org.slipp.masil.games.domains.Judge;
-import org.slipp.masil.games.domains.Target;
-
 public class HighLowPlayService {
 
     private final HighLowPlayingContextFactory contextFactory;
@@ -35,7 +32,7 @@ public class HighLowPlayService {
         HighLowPlayingContext context = contextRepository.findById(command.getContextId());
         context.retry();
         contextRepository.save(context);
-        HighLowJudgement judgement =  new HighLowJudge(Target.of(context.getTarget())).judge(command.getGuessNumber());
+        HighLowJudgement judgement = new HighLowJudge(Target.of(context.getTarget())).judge(command.getGuessNumber());
         if (judgement == HighLowJudgement.MATCH) {
             HighLowPlayingContext save = contextRepository.findById(command.getContextId());
             save.match();

@@ -1,6 +1,6 @@
 package org.slipp.masil.games.application;
 
-import org.slipp.masil.games.domains.Score;
+import org.slipp.masil.games.domains.highrow.Score;
 import org.slipp.masil.games.domains.game.GameId;
 import org.slipp.masil.games.domains.ranking.Ranking;
 import org.slipp.masil.games.domains.ranking.RankingId;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 
 @Service

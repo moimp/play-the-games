@@ -1,7 +1,7 @@
 package org.slipp.masil.games.infrastructures.jdbc;
 
-import org.slipp.masil.games.domains.Score;
-import org.slipp.masil.games.domains.Target;
+import org.slipp.masil.games.domains.highrow.Score;
+import org.slipp.masil.games.domains.highrow.Target;
 import org.slipp.masil.games.domains.game.GameId;
 import org.slipp.masil.games.domains.ranking.RankingId;
 import org.springframework.core.convert.converter.Converter;

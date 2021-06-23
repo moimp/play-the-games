@@ -2,7 +2,7 @@ package org.slipp.masil.games.domains.ranking;
 
 import lombok.Getter;
 import lombok.Value;
-import org.slipp.masil.games.domains.Score;
+import org.slipp.masil.games.domains.highrow.Score;
 
 import java.time.LocalDateTime;
 

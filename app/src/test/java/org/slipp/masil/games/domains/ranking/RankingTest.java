@@ -1,7 +1,7 @@
 package org.slipp.masil.games.domains.ranking;
 
 import org.junit.jupiter.api.Test;
-import org.slipp.masil.games.domains.Score;
+import org.slipp.masil.games.domains.highrow.Score;
 import org.slipp.masil.games.domains.game.GameId;
 
 import java.time.LocalDateTime;

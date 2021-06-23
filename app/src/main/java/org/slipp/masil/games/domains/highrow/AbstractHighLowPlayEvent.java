@@ -9,13 +9,14 @@ import java.util.TimeZone;
 
 public abstract class AbstractHighLowPlayEvent<T> implements DomainEvent<T> {
 
-    private T aggregateRoot;
-
-    /** use serialVersionUID from Spring 1.2 for interoperability. */
+    /**
+     * use serialVersionUID from Spring 1.2 for interoperability.
+     */
     private static final long serialVersionUID = 7099057708183571937L;
     @Getter
     /** System time when the event happened. */
     private final long timestamp;
+    private final T aggregateRoot;
 
     /**
      * Create a new {@code ApplicationEvent}.

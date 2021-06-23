@@ -3,7 +3,6 @@ package org.slipp.masil.games.domains.highrow;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.slipp.masil.games.domains.Target;
 import org.slipp.masil.games.domains.game.GameId;
 
 import static org.assertj.core.api.Assertions.assertThat;
