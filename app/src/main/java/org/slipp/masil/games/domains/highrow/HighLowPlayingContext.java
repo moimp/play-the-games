@@ -54,15 +54,6 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
         this.version = version;
     }
 
-    @Deprecated
-    public static HighLowPlayingContext by(GameId gameId, String userName, LocalDateTime startAt) {
-        return new HighLowPlayingContext(null, gameId, userName, startAt, INIT, 3L, Score.of(0), INIT_VERSION);
-    }
-
-    public static HighLowPlayingContext by(GameId gameId, String userName) {
-        return by(gameId, userName, LocalDateTime.now());
-    }
-
     public static HighLowPlayingContext by(GameId gameId, String userName, Target target) {
         return new HighLowPlayingContext(null, gameId, userName, LocalDateTime.now(), INIT, target.getValue(), Score.of(0), INIT_VERSION);
     }

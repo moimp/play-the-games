@@ -3,6 +3,7 @@ package org.slipp.masil.games.domains.highrow;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slipp.masil.games.domains.Score;
+import org.slipp.masil.games.domains.Target;
 import org.slipp.masil.games.domains.game.GameId;
 
 import java.time.LocalDateTime;
@@ -18,7 +19,7 @@ class HighLowPlayingContextTest {
 
     @BeforeEach
     void setUp() {
-        sut = HighLowPlayingContext.by(gameId, userName);
+        sut = HighLowPlayingContext.by(gameId, userName, Target.of(3L));
     }
 
     @Test
