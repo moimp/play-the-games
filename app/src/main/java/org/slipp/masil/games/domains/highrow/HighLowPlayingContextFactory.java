@@ -1,6 +1,7 @@
 package org.slipp.masil.games.domains.highrow;
 
-import java.time.LocalDateTime;
+import org.slipp.masil.games.domains.Target;
+import org.slipp.masil.games.domains.game.DifficultyLevel;
 
 public interface HighLowPlayingContextFactory {
 
@@ -13,6 +14,7 @@ public interface HighLowPlayingContextFactory {
 
 
     default HighLowPlayingContext create(StartHighLowPlay command) {
-        return HighLowPlayingContext.by(command.getGameId(), command.getUsername(), LocalDateTime.now());
+        Target target = DifficultyLevel.EASY.create();
+        return HighLowPlayingContext.by(command.getGameId(), command.getUsername(), target);
     }
 }

@@ -3,6 +3,7 @@ package org.slipp.masil.games.domains.highrow;
 import lombok.Getter;
 import org.slipp.masil.games.domains.PlayState;
 import org.slipp.masil.games.domains.Score;
+import org.slipp.masil.games.domains.Target;
 import org.slipp.masil.games.domains.game.GameId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
@@ -30,11 +31,15 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
     private LocalDateTime startAt;
     @Getter
     private PlayState state;
+
+    @Getter
+    private Long target;
+
     @Getter
     private Score score;
 
     private HighLowPlayingContext(Long id,
-                                  GameId gameId, String userName, LocalDateTime startAt, PlayState state, Score score,
+                                  GameId gameId, String userName, LocalDateTime startAt, PlayState state, Long target, Score score,
                                   Long version) {
         this.id = id;
         if (Objects.isNull(gameId) && Objects.isNull(userName)) {
@@ -45,16 +50,12 @@ public class HighLowPlayingContext extends AbstractAggregateRoot<HighLowPlayingC
         setStartAt(startAt);
         setState(state);
         setScore(score);
+        this.target = target;
         this.version = version;
     }
 
-    @Deprecated
-    public static HighLowPlayingContext by(GameId gameId, String userName, LocalDateTime startAt) {
-        return new HighLowPlayingContext(null, gameId, userName, startAt, INIT, Score.of(0), INIT_VERSION);
-    }
-
-    public static HighLowPlayingContext by(GameId gameId, String userName) {
-        return by(gameId, userName, LocalDateTime.now());
+    public static HighLowPlayingContext by(GameId gameId, String userName, Target target) {
+        return new HighLowPlayingContext(null, gameId, userName, LocalDateTime.now(), INIT, target.getValue(), Score.of(0), INIT_VERSION);
     }
 
     private void setStartAt(LocalDateTime startAt) {
