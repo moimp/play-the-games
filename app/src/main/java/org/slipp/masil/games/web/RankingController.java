@@ -26,7 +26,7 @@ public class RankingController {
         // TODO 랭킹 순위 확인 필요
         Ranking ranking = repository.findById(RankingId.of(Long.parseLong(gameId)));
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("rankingView");
+        mv.setViewName("highlow/ranking");
         mv.addObject("ranking", ranking.getItems());
         mv.addObject("gameId", gameId);
         return mv;
