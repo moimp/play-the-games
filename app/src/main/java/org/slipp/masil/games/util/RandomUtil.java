@@ -11,7 +11,7 @@ public class RandomUtil {
         throw new IllegalArgumentException();
     }
 
-    public static Long generateNumbers(final int startInclusive, final int endInclusive) {
+    public static Long generateNumbers(final long startInclusive, final long endInclusive) {
         List<Long> numbers = new ArrayList<>();
         LongStream.range(startInclusive, endInclusive)
                 .forEach(numbers::add);
