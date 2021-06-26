@@ -96,9 +96,9 @@ public class Ranking {
     }
 
     private void setItems(List<RankingItem> items) {
-        if (items.size() != getSize()) {
-            throw new IllegalArgumentException();
-        }
+//        if (items.size() != getSize()) {
+//            throw new IllegalArgumentException();
+//        }
         this.items = items;
     }
 }

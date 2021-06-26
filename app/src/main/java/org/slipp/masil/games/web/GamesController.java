@@ -10,7 +10,7 @@ public class GamesController {
     @GetMapping(value = "/games")
     public ModelAndView games() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
+        modelAndView.setViewName("gameLounge");
         modelAndView.addObject("gameId", "1");
 
         return modelAndView;
