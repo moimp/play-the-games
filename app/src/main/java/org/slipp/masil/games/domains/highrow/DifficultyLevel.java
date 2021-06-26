@@ -3,7 +3,7 @@ package org.slipp.masil.games.domains.highrow;
 import lombok.Value;
 import org.slipp.masil.games.util.RandomUtil;
 
-enum DifficultyLevel {
+public enum DifficultyLevel {
     EASY(Range.of(1L,10L)),
     NORMAL(Range.of(1L,1000L)),
     HARD(Range.of(1L,10000L));

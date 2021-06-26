@@ -4,10 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.slipp.masil.games.domains.highrow.StartHighLowPlay;
-import org.slipp.masil.games.domains.highrow.HighLowPlayingContext;
-import org.slipp.masil.games.domains.highrow.HighLowPlayingContextFactory;
-import org.slipp.masil.games.domains.highrow.HighLowPlayStarted;
+import org.slipp.masil.games.domains.highrow.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,7 +15,7 @@ public class EventEnvelopCreateTest {
 
     @BeforeEach
     void setUp() {
-        context = HighLowPlayingContextFactory.DEFAULT.create(new StartHighLowPlay("Foo"));
+        context = HighLowPlayingContextFactory.DEFAULT.create(StartHighLowPlay.of("Foo", DifficultyLevel.EASY));
     }
 
     @Test

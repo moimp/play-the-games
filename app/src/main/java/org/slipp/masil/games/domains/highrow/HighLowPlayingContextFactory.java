@@ -11,7 +11,7 @@ public interface HighLowPlayingContextFactory {
 
 
     default HighLowPlayingContext create(StartHighLowPlay command) {
-        Target target = DifficultyLevel.EASY.create();
+        Target target = command.getLevel().create();
         return HighLowPlayingContext.by(command.getGameId(), command.getUsername(), target);
     }
 }

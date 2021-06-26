@@ -6,6 +6,8 @@ import org.slipp.masil.games.domains.highrow.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.slipp.masil.games.domains.highrow.DifficultyLevel.EASY;
+
 @Service
 @Transactional
 public class HighLowApplicationService {
@@ -19,7 +21,7 @@ public class HighLowApplicationService {
 
     @Transactional
     public Long start(String name) {
-        StartHighLowPlay command = new StartHighLowPlay(name);
+        StartHighLowPlay command = StartHighLowPlay.of(name, EASY);
         return getHighLowPlayService().start(command);
     }
 
@@ -31,7 +33,7 @@ public class HighLowApplicationService {
 
     @Transactional
     public void exit() {
-        StartHighLowPlay command = new StartHighLowPlay("Foo");
-        getHighLowPlayService().start(command);
+        throw new UnsupportedOperationException("Not yet implement");
+        //getHighLowPlayService().stop(command);
     }
 }
