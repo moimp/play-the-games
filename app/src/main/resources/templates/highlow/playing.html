@@ -1,31 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>HighLowGame</title>
-</head>
-<body>
-<br/>
-<span th:text="'이름: ' + ${userName}">wait</span><br/>
-<span th:if="${result} != null" th:text="'결과: ' + ${result}">wait</span>
-<br/><br/>
-<form th:if="${result} != MATCH"
-      th:action="@{/games/__${gameId}__/turn}" method="post">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
 
-    <span>숫자를 입력하세요.</span>
+<th:block layout:fragment="content">
+    <!-- Begin Page Content -->
+    <span th:text="'이름: ' + ${userName}">wait</span><br/>
+    <span th:if="${result} != null" th:text="'결과: ' + ${result}">wait</span>
+    <br/><br/>
+    <form th:if="${result} != MATCH"
+          th:action="@{/games/__${gameId}__/turn}" method="post">
 
-    <label>
-        <input type="text" name="guessNumber">
-    </label>
-    <input type="hidden" name="contextId" th:value="${contextId}">
-    <input type="hidden" name="userName" th:value="${userName}">
-    <input type="submit" name="결과 확인" value="결과 확인">
-</form>
-<br/>
+        <span>숫자를 입력하세요.</span>
 
-<span th:if="${result} == MATCH" text='Ranking 을 확인하시겠습니까'>
-    <a th:href="@{/ranking/__${gameId}__}"> 랭킹 확인하기 </a>
-</span>
+        <label>
+            <input type="text" name="guessNumber">
+        </label>
+        <input type="hidden" name="contextId" th:value="${contextId}">
+        <input type="hidden" name="userName" th:value="${userName}">
+        <input type="submit" name="결과 확인" value="결과 확인">
+    </form>
+    <br/>
 
-</body>
+    <span th:if="${result} == MATCH" text='Ranking 을 확인하시겠습니까'>
+        <a th:href="@{/ranking/__${gameId}__}"> 랭킹 확인하기 </a>
+    </span>
+</th:block>
 </html>
