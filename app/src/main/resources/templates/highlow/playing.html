@@ -5,20 +5,20 @@
 
 <th:block layout:fragment="content">
     <!-- Begin Page Content -->
-    <span th:text="'이름: ' + ${userName}">wait</span><br/>
-    <span th:if="${result} != null" th:text="'결과: ' + ${result}">wait</span>
-    <br/><br/>
+    <p class="text-break"></p>
+    <p class="text-left font-weight-bold h3" th:text="'이름: ' + ${userName}">wait</p><br/>
+    <p class="text-left font-weight-bold h3" th:if="${result} != null" th:text="'결과: ' + ${result}">wait</p>
+
     <form th:if="${result} != MATCH"
           th:action="@{/games/__${gameId}__/turn}" method="post">
-
-        <span>숫자를 입력하세요.</span>
-
-        <label>
-            <input type="text" name="guessNumber">
-        </label>
+        <div class="form-control">
+            <label for="guessNumberInput">예측되는 숫자를 입력하세요.</label>
+            <input class="form-control" id="guessNumberInput" type="text" name="guessNumber" aria-describedby="guess-number-small">
         <input type="hidden" name="contextId" th:value="${contextId}">
         <input type="hidden" name="userName" th:value="${userName}">
-        <input type="submit" name="결과 확인" value="결과 확인">
+        </div>
+        <p class="text-break"></p>
+        <button type="submit" class="btn btn-primary top-50" value="결과 확인">결과 확인</button>
     </form>
     <br/>
 
