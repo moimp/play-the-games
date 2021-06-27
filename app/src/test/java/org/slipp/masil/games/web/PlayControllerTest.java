@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.slipp.masil.games.application.HighLowApplicationService;
 import org.slipp.masil.games.domains.highrow.GuessHighLowNumber;
 import org.slipp.masil.games.domains.highrow.HighLowJudgement;
-import org.slipp.masil.games.domains.ranking.RankingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -18,20 +17,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-@WebMvcTest
+@WebMvcTest(controllers = PlayController.class)
 class PlayControllerTest {
 
     @Autowired
     MockMvc mockMvc;
 
     @MockBean
-    RankingRepository repository;
-
-    @MockBean
     HighLowApplicationService highLowApplicationService;
-
-    @MockBean
-    RankingController rankingController;
 
     @Test
     void startHighLowGameButton() throws Exception {
@@ -55,7 +48,6 @@ class PlayControllerTest {
 
     @Test
     void low_result_playing() throws Exception {
-        when(highLowApplicationService.start("mike")).thenReturn(1L);
         when(highLowApplicationService.play(GuessHighLowNumber.of(1L, 3L)))
                 .thenReturn(HighLowJudgement.LOW);
 
@@ -73,7 +65,6 @@ class PlayControllerTest {
 
     @Test
     void high_result_playing() throws Exception {
-        when(highLowApplicationService.start("mike")).thenReturn(1L);
         when(highLowApplicationService.play(GuessHighLowNumber.of(1L, 3L)))
                 .thenReturn(HighLowJudgement.HIGH);
 
@@ -91,7 +82,6 @@ class PlayControllerTest {
 
     @Test
     void match_result_playing() throws Exception {
-        when(highLowApplicationService.start("mike")).thenReturn(1L);
         when(highLowApplicationService.play(GuessHighLowNumber.of(1L, 3L)))
                 .thenReturn(HighLowJudgement.MATCH);
 

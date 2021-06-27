@@ -1,7 +1,6 @@
 package org.slipp.masil.games.web;
 
 import org.junit.jupiter.api.Test;
-import org.slipp.masil.games.application.HighLowApplicationService;
 import org.slipp.masil.games.domains.game.GameId;
 import org.slipp.masil.games.domains.ranking.Ranking;
 import org.slipp.masil.games.domains.ranking.RankingId;
@@ -15,18 +14,14 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest
+@WebMvcTest(controllers = RankingController.class)
 class RankingControllerTest {
-
 
     @Autowired
     MockMvc mockMvc;
 
     @MockBean
     RankingRepository repository;
-
-    @MockBean
-    HighLowApplicationService highLowApplicationService;
 
     @Test
     void rankingView() throws Exception {
