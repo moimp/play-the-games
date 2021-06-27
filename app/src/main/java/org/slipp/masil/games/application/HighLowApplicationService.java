@@ -15,12 +15,18 @@ public class HighLowApplicationService {
     @Getter(value = AccessLevel.PACKAGE)
     final HighLowPlayService highLowPlayService;
 
-    public HighLowApplicationService(HighLowPlayingContextRepository contextRepository) {
-        this.highLowPlayService = new HighLowPlayService(contextRepository);
+    public HighLowApplicationService(HighLowPlayService service) {
+        this.highLowPlayService = service;
     }
 
     @Transactional
     public Long start(String name) {
+        StartHighLowPlay command = StartHighLowPlay.of(name, EASY);
+        return getHighLowPlayService().start(command);
+    }
+
+    @Transactional
+    public Long start(String name, String level) {
         StartHighLowPlay command = StartHighLowPlay.of(name, EASY);
         return getHighLowPlayService().start(command);
     }

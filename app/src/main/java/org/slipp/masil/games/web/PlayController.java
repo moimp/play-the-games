@@ -30,9 +30,10 @@ public class PlayController {
     @PostMapping(value = "/games/{gameId}")
     public ModelAndView getUserName(
             @PathVariable String gameId,
-            @RequestParam(value = "userName") String userName
+            @RequestParam(value = "userName") String userName,
+            @RequestParam(value = "level") String level
     ) {
-        Long contextId = highLowApplicationService.start(userName);
+        Long contextId = highLowApplicationService.start(userName, level);
         ModelAndView mv = new ModelAndView();
         mv.setViewName("highlow/playing");
         mv.addObject("contextId", contextId);

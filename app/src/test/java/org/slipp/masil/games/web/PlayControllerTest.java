@@ -36,10 +36,10 @@ class PlayControllerTest {
 
     @Test
     void userNameAndGameStart() throws Exception {
-        given(highLowApplicationService.start("mike")).willReturn(1L);
-
+        //TODO 어떤 테스트를 해야 할까?
         mockMvc.perform(post("/games/{gameId}", 1)
                 .param("userName", "mike")
+                .param("level", "EASY")
         )
                 .andExpect(view().name("highlow/playing"))
                 .andExpect(model().attributeExists("contextId"))
