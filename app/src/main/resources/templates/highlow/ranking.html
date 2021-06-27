@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>HighLowRankingView</title>
-</head>
-<body>
-<table>
-    <tbody>
-    <tr>
-        <td>이름</td>
-        <td>점수</td>
-        <td>날짜</td>
-    </tr>
-    <tr th:each="rank : ${ranking}">
-        <td th:text="${rank.userName}"></td>
-        <td th:text="${rank.score.value}"></td>
-        <td th:text="${rank.rankedAt}"></td>
-    </tr>
-    </tbody>
-</table>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
 
-<td><a th:href="@{/games/__${gameId}__/}"> 다시 게임하기 </a></td>
-</body>
+<th:block layout:fragment="content">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">이름</th>
+                    <th scope="col">점수</th>
+                    <th scope="col">날짜</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:each="rank : ${ranking}">
+                <td th:text="${rank.userName}"></td>
+                <td th:text="${rank.score.value}"></td>
+                <td th:text="${rank.rankedAt}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a th:href="@{/games/__${gameId}__/}"> 다시 게임하기 </a>
+    </div>
+</th:block>
 </html>

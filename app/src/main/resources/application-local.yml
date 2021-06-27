@@ -11,3 +11,10 @@ spring:
     url: jdbc:postgresql://localhost:5432/playthegames
     username: masil
     password: password
+
+  devtools:
+    livereload:
+      enabled: true
+  thymeleaf:
+    cache: false
+

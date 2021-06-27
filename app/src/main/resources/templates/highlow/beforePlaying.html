@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>HighLowGame</title>
-</head>
-<body>
-<br/>
-<p> 이름을 입력해주세요 </p>
-<form th:action="@{/games/__${gameId}__}" method="post">
-    <label>
-        <input type="text" name="userName">
-        <input type="hidden" th:value="${gameId}">
-    </label>
-    <input type="submit" name="완료">
-</form>
-</body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
+
+<th:block layout:fragment="content">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <p class="text-left"> 하이로우 게임 시작하기 </p>
+        <form th:action="@{/games/__${gameId}__}" method="post">
+            <div class="form-group">
+                <label for="enterName">이름을 입력해주세요</label>
+                <input class="form-control" id="enterName" type="text" name="userName" aria-describedby="enterName-small"
+                       placeholder="Enter name">
+                <small id="enterName-small" class="form-text text-muted">기록 저장시 사용될 이름입니다.</small>
+                <input type="hidden" th:value="${gameId}">
+            </div>
+            <button type="submit" class="btn btn-primary">완료</button>
+        </form>
+    </div>
+</th:block>
 </html>

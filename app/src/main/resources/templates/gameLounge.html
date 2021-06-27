@@ -1,18 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Game Lounge</title>
-</head>
-<body>
-    <p> 아래 할 수 있는 게임의 목록입니다.</p>
-<table>
-    <tr>
-        <td>HighLowGame</td>
-    </tr>
-    <tr>
-        <td><a th:href="@{/games/__${gameId}__/}"> 게임 시작! </a></td>
-    </tr>
-</table>
-</body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
+
+<th:block layout:fragment="content">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <header class="py-5">
+            <div class="container px-lg-5">
+                <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+                    <div class="m-4 m-lg-5">
+                        <h1 class="display-5 fw-bold">Masil Game Lounge</h1>
+                        <p class="fs-4">아래에 시작 할 수 있는 게임의 목록입니다.</p>
+                        <p class="fs-4"></p>
+                        <a class="btn btn-primary btn-lg" href="https://github.com/moimp/play-the-games"> github 소스 코드 보기</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="pt-4">
+            <div class="container px-lg-5">
+                <!-- Page Features-->
+                <div class="row gx-lg-5">
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4">
+                                    <i class="bi bi-collection"></i>
+                                </div>
+                                <a th:href="@{/games/__${gameId}__/}">
+                                    <h2 class="fs-4 fw-bold">하이로우게임</h2>
+                                </a>
+                                <p class="mb-0">하이로우게임은 숫자 맞추기 게임입니다. 사용자의 입력값에 따라 위 또는 아래를 알려줍니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4">
+                                    <i class="bi bi-cloud-download"></i></div>
+                                <h2 class="fs-4 fw-bold">숫자야구게임</h2>
+                                <p class="mb-0">숫자야구게임은 내가 입력한 값에 따라 '1볼 2스트' 이런식으로 정답을 유추해가는 게임입니다. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</th:block>
 </html>
