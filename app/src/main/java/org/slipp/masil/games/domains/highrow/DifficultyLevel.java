@@ -1,6 +1,4 @@
-package org.slipp.masil.games.domains.game;
-
-import org.slipp.masil.games.domains.highrow.Target;
+package org.slipp.masil.games.domains.highrow;
 
 import java.util.function.Supplier;
 
