@@ -32,7 +32,7 @@ class HighLowPlayServiceStartTest {
         sut = new HighLowPlayService(contextFactory, repository);
     }
 
-    StartHighLowPlay command = new StartHighLowPlay("Foo");
+    StartHighLowPlay command = StartHighLowPlay.of("Foo", DifficultyLevel.EASY);
 
     @Test
     void start() {

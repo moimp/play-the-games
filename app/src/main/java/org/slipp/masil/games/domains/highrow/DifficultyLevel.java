@@ -1,18 +1,30 @@
 package org.slipp.masil.games.domains.highrow;
 
-import java.util.function.Supplier;
+import lombok.Value;
+import org.slipp.masil.games.util.RandomUtil;
 
 public enum DifficultyLevel {
-    //    RandomUtil.generateNumbers(1, 9)
-    EASY(() -> 3L);
+    EASY(Range.of(1L,10L)),
+    NORMAL(Range.of(1L,1000L)),
+    HARD(Range.of(1L,10000L));
 
-    private final Supplier<Long> generator;
+    private final Range range;
 
-    DifficultyLevel(Supplier<Long> generator) {
-        this.generator = generator;
+    DifficultyLevel(Range range) {
+        this.range = range;
     }
 
     public Target create() {
-        return Target.of(generator.get());
+        return Target.of(RandomUtil.generateNumbers(this.range.startInclusive, this.range.endInclusive));
+    }
+
+    Range range() {
+        return range;
+    }
+
+    @Value(staticConstructor = "of")
+    static class Range {
+        long startInclusive;
+        long endInclusive;
     }
 }

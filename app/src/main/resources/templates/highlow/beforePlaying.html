@@ -9,11 +9,17 @@
         <p class="text-left"> 하이로우 게임 시작하기 </p>
         <form th:action="@{/games/__${gameId}__}" method="post">
             <div class="form-group">
+                <input type="hidden" th:value="${gameId}">
                 <label for="enterName">이름을 입력해주세요</label>
                 <input class="form-control" id="enterName" type="text" name="userName" aria-describedby="enterName-small"
                        placeholder="Enter name">
                 <small id="enterName-small" class="form-text text-muted">기록 저장시 사용될 이름입니다.</small>
-                <input type="hidden" th:value="${gameId}">
+            </div>
+            <div class="form-group">
+                <label for="selectLevel">난이도 선택</label>
+                <select id="selectLevel" class="form-control" name="level">
+                    <option value="EASY">EASY</option>
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">완료</button>
         </form>
