@@ -148,6 +148,10 @@ class Turn {
 ```
 
 ## Baseball Game
+- gameId 는 2 이다.
+- target 의 숫자범위는 3자리 가져야 한다
+- target 의 숫자는 중복된 숫자가 없어야 한다.
+
 
 
 
