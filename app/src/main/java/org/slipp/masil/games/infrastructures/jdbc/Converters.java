@@ -1,5 +1,6 @@
 package org.slipp.masil.games.infrastructures.jdbc;
 
+import org.slipp.masil.games.domains.context.PlayingContextId;
 import org.slipp.masil.games.domains.highrow.Score;
 import org.slipp.masil.games.domains.highrow.Target;
 import org.slipp.masil.games.domains.game.GameId;
@@ -87,6 +88,26 @@ public class Converters {
         @Override
         public Target convert(Long source) {
             return Target.of(source);
+        }
+    }
+
+    @WritingConverter
+    public enum PlayingContextIdToLong implements Converter<PlayingContextId, Long> {
+        INSTANCE;
+
+        @Override
+        public Long convert(PlayingContextId source) {
+            return source.getValue();
+        }
+    }
+
+    @ReadingConverter
+    public enum LongToPlayingContextId implements Converter<Long, PlayingContextId> {
+        INSTANCE;
+
+        @Override
+        public PlayingContextId convert(Long source) {
+            return PlayingContextId.of(source);
         }
     }
 }
