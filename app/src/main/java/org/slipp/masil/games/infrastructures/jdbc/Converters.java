@@ -1,5 +1,6 @@
 package org.slipp.masil.games.infrastructures.jdbc;
 
+import org.slipp.masil.games.domains.baseball.BaseballTargetId;
 import org.slipp.masil.games.domains.context.PlayingContextId;
 import org.slipp.masil.games.domains.highrow.Score;
 import org.slipp.masil.games.domains.highrow.Target;
@@ -108,6 +109,26 @@ public class Converters {
         @Override
         public PlayingContextId convert(Long source) {
             return PlayingContextId.of(source);
+        }
+    }
+
+    @WritingConverter
+    public enum BaseballTargetIdToLong implements Converter<BaseballTargetId, Long> {
+        INSTANCE;
+
+        @Override
+        public Long convert(BaseballTargetId source) {
+            return source.getValue();
+        }
+    }
+
+    @ReadingConverter
+    public enum LongToBaseballTargetId implements Converter<Long, BaseballTargetId> {
+        INSTANCE;
+
+        @Override
+        public BaseballTargetId convert(Long source) {
+            return BaseballTargetId.of(source);
         }
     }
 }
